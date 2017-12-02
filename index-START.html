@@ -87,14 +87,60 @@
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
+      // Opened up this link and entered the code below in console of that page to test it
 
+      //const category = document.querySelector('.mw-category')
+      // const links = category.querySelector('a')
+
+      // Cant do map yet... querySelector returns a NodeList not an array!
+      // do convert it into an array you can do:
+      //const links = Array.from(category.querySelector('a'))
+      // OR.... use spread operator 
+      // const links = [...category.querySelector('a')]
+
+      //const de = links.map((link) => {
+      //  return link.textContent
+      //  }).filter((streetName) => {
+      //    return streetName.includes('de')
+      //  })
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
 
+    const lastAlpha = people.sort((lastOne, nextOne) => {
+        console.log(lastOne)
+
+        // each one of these is an array split up by the , 
+        // where Last is what was before , and first is what was after
+        const [aLast, aFirst] = lastOne.split(', ')
+        const [bLast, bFirst] = nextOne.split(', ')
+
+        return aLast > bLast ? 1 : -1 
+      
+    })
+
+    console.log(lastAlpha)
+
     // 8. Reduce Exercise
     // Sum up the instances of each of these
-    const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+    const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck', 'new trasnport example' ];
+
+    // this reduce returns objects consisting of one key (the type of transport)
+    // and the value of that key will be the number of times that type occurs
+    const transportation = data.reduce((obj, item) => {
+      if(!obj[item]) { 
+        obj[item] = 0
+      }
+      
+      // would increment the amount of items each time
+      obj[item]++
+      
+      return obj
+
+    }, {})
+    // needs to start with an empty object
+
+    console.log(transportation)
 
   </script>
 </body>
